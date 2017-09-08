@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     if (myArrListAdd.contains(EtRandom.text.toString())) {
 
                         confirm_mission(tv1)
+
                         println("fahtest")
                     }
                     // randomNumber(EtRandom)
