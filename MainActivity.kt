@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
-
-
         AddMyArrList()
         AllSetTVText()
         tv1.setOnClickListener(this)
