@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             myArrList = savedInstanceState.get(KeyAdd) as ArrayList<String>
 
         }
+
+
+
         AddMyArrList()
         AllSetTVText()
         tv1.setOnClickListener(this)
