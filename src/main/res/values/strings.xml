@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BINGO</string>
+    <string name="text_hint">Enter number</string>
+    <string name="text_random">Random</string>
+    <string name="dialog_confirm">confirm</string>
+    <string name="dialog_cancel">cancel</string>
+    <string name="dialog_mission">ดูวิดิโอ 2 วิดิโอ</string>
+    <string name="dialog_mission2">กดไลค์ 5 ครั้ง</string>
+    <string name="dialog_mission3">กดแชร์วิดิโอ 1 ครั้ง</string>
+</resources>
