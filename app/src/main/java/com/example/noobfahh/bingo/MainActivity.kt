@@ -1,14 +1,13 @@
 package com.example.noobfahh.bingo
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.DialogInterface
-import android.support.v7.app.AlertDialog
-import android.widget.EditText
-import android.widget.Toast
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -173,8 +172,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         builder.setMessage(R.string.dialog_mission)
 //        builder.setMessage("fffff")
         builder.setPositiveButton(R.string.dialog_confirm, DialogInterface.OnClickListener { dialog, id ->
-            //            val i = Intent(application, MainActivity::class.java)
-//            startActivity(i)
+            val intent = Intent(this, Main2Activity::class.java)
+            startActivity(intent)
             if (v != null) {
                 v.setBackgroundResource(R.drawable.ic_finish)
                 v.isEnabled = false
