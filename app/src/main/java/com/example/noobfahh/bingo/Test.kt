@@ -7,5 +7,6 @@ import android.app.DialogFragment
  */
 class Test : DialogFragment() {
 
+    var a = "test github";
 
 }
