@@ -8,6 +8,7 @@
     android:background="#ffffff"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:id="@+id/RL1"
     tools:context="com.example.noobfahh.bingo.MainActivity">
     <EditText
         android:id="@+id/EtRandom"
@@ -16,6 +17,7 @@
         android:hint="@string/text_hint"
         android:background="@drawable/btn_default_normal"
         android:backgroundTint="#f9f8f7"
+        android:inputType="number"
         android:layout_alignTop="@+id/btnRandom"
         android:layout_alignLeft="@+id/tv1"
         android:layout_alignStart="@+id/tv1" />

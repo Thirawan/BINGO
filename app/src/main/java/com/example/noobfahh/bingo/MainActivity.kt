@@ -2,24 +2,39 @@ package com.example.noobfahh.bingo
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.collections.ArrayList
+import android.view.inputmethod.InputMethodManager.HIDE_IMPLICIT_ONLY
+import android.app.Activity
+import android.content.Context
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.graphics.Rect
+import android.widget.RelativeLayout
+
+
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     var myArrList = ArrayList<String>()
     var myArrListAdd = ArrayList<String>()
     val KeyAdd = "add"
+    private val myMission = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initHideKeyboard(RL1)
+        showMissionArrList()
         if (savedInstanceState != null){
             myArrList = savedInstanceState.get(KeyAdd) as ArrayList<String>
 
@@ -37,6 +52,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         tv9.setOnClickListener(this)
         btnRandom.setOnClickListener(this)
         EtRandom.setOnClickListener(this)
+
+    }
+
+    private fun showMissionArrList() {
+       // println(R.string.dialog_mission.toString()+"hjk")
+        myMission.add("ดู วิดิโอ 2 ครั้ง")
+        myMission.add("กดไลค์ 5 ตรั้ง")
+        myMission.add("แชร์วิดิโอ 1 ครั้ง")
+        myMission.add("กดไลค์ 5 ตรั้ง")
+        myMission.add("ดู วิดิโอ 2 ครั้ง")
+        myMission.add("ดู วิดิโอ 2 ครั้ง")
+        myMission.add("กดไลค์ 5 ตรั้ง")
+        myMission.add("แชร์วิดิโอ 1 ครั้ง")
+        myMission.add("แชร์วิดิโอ 1 ครั้ง")
 
     }
 
@@ -77,8 +106,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         tv9.text = i
         myArrList.remove(i)
 
-
     }
+
 
     @SuppressLint("ResourceAsColor")
     override fun onClick(v: View?) {
@@ -92,10 +121,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         println(myArrListAdd[i] + "test")
                     }
                     if (myArrListAdd.contains(EtRandom.text.toString())) {
+                        for (i in 1..9) {
+                            println(i.toString()+"saassssss")
+                            val id = resources.getIdentifier("tv"+ i.toString(), "id", packageName)
+                            val textView = this.findViewById<TextView>(id)
+                            if (textView.text.toString() == EtRandom.text.toString()){
+                                confirm_mission(textView,i-1)
+                            }
+                        }
 
-                        confirm_mission(tv1)
 
-                        println("fahtest")
+//                        println("fahtest")
                     }
                     // randomNumber(EtRandom)
                     //randomNumber()
@@ -104,62 +140,62 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //                    tv1.text = "กดไลค์ 5 ครั้ง"
 //                    tv1.setBackgroundResource(R.drawable.ci_bg)
 //                    tv1.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission(tv1)
+                    confirm_mission(v,0)
                 }
                 R.id.tv2 -> {
 //                    tv2.text = "ดูวิดิโอ 2 ครั้ง"
 //                    tv2.setBackgroundResource(R.drawable.ci_bg)
 //                    tv2.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission2(tv2)
+                    confirm_mission(v,1)
 
                 }
                 R.id.tv3 -> {
 //                    tv3.text = "กดแชร์วิดิโอ 1 ครั้ง"
 //                    tv3.setBackgroundResource(R.drawable.ci_bg)
 //                    tv3.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission3(tv3)
+                    confirm_mission(v,2)
 
                 }
                 R.id.tv4 -> {
 //                    tv4.text = "กดแชร์วิดิโอ 1 ครั้ง"
 //                    tv4.setBackgroundResource(R.drawable.ci_bg)
 //                    tv4.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission3(tv4)
+                    confirm_mission(v,3)
 
                 }
                 R.id.tv5 -> {
 //                    tv5.text = "ดูวิดิโอ 2 ครั้ง"
 //                    tv5.setBackgroundResource(R.drawable.ci_bg)
 //                    tv5.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission(tv5)
+                    confirm_mission(v,4)
 
                 }
                 R.id.tv6 -> {
 //                    tv6.text = "ดูวิดิโอ 2 ครั้ง"
 //                    tv6.setBackgroundResource(R.drawable.ci_bg)
 //                    tv6.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission(tv6)
+                    confirm_mission(v,5)
 
                 }
                 R.id.tv7 -> {
 //                    tv7.text = "กดไลค์ 5 ครั้ง"
 //                    tv7.setBackgroundResource(R.drawable.ci_bg)
 //                    tv7.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission2(tv7)
+                    confirm_mission(v,6)
 
                 }
                 R.id.tv8 -> {
 //                    tv8.text = "กดแชร์วิดิโอ 1 ครั้ง"
 //                    tv8.setBackgroundResource(R.drawable.ci_bg)
 //                    tv8.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission3(tv8)
+                    confirm_mission(v,7)
 
                 }
                 R.id.tv9 -> {
 //                    tv9.text = "กดไลค์ 5 ครั้ง"
 //                    tv9.setBackgroundResource(R.drawable.ci_bg)
 //                    tv9.setTextColor(R.color.colorPrimaryDark)
-                    confirm_mission2(tv9)
+                    confirm_mission(v,8)
 
                 }
             }
@@ -167,60 +203,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     @SuppressLint("WrongConstant", "ResourceType")
-    private fun confirm_mission(v: View?) {
+    private fun confirm_mission(v: View?, i: Int) {
         val builder = AlertDialog.Builder(this)
-        builder.setMessage(R.string.dialog_mission)
-//        builder.setMessage("fffff")
-        builder.setPositiveButton(R.string.dialog_confirm, DialogInterface.OnClickListener { dialog, id ->
-            val intent = Intent(this, Main2Activity::class.java)
-            startActivity(intent)
-            if (v != null) {
-                v.setBackgroundResource(R.drawable.ic_finish)
-                v.isEnabled = false
-            }
-        })
-        builder.setNegativeButton(R.string.dialog_cancel, DialogInterface.OnClickListener { dialog, which ->
-            dialog.dismiss();
-        })
-        builder.show()
-    }
+//        println(myMission[i])
+        builder.setMessage(myMission[i])
 
-    private fun confirm_mission2(v: View?) {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(R.string.dialog_mission2)
-//        builder.setMessage("fffff")
+//        builder.setMessage(R.string.dialog_mission)
         builder.setPositiveButton(R.string.dialog_confirm, DialogInterface.OnClickListener { dialog, id ->
-            //            val i = Intent(application, MainActivity::class.java)
-//            startActivity(i)
+//            val intent = Intent(this, Main2Activity::class.java)
+//            startActivity(intent)
             if (v != null) {
                 v.setBackgroundResource(R.drawable.ic_finish)
                 v.isEnabled = false
             }
-//            tv1.isClickable.equals(false)
-            //sharedPrefUtil.clearSharedPref()
-//            finish()
-        })
-        builder.setNegativeButton(R.string.dialog_cancel, DialogInterface.OnClickListener { dialog, which ->
-            dialog.dismiss();
-        })
-        builder.show()
-    }
-
-    @SuppressLint("ResourceAsColor")
-    private fun confirm_mission3(v: View?) {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage(R.string.dialog_mission3)
-//        builder.setMessage("fffff")
-        builder.setPositiveButton(R.string.dialog_confirm, DialogInterface.OnClickListener { dialog, id ->
-            //            val i = Intent(application, MainActivity::class.java)
-//            startActivity(i)
-            if (v != null) {
-                v.setBackgroundResource(R.drawable.ic_finish)
-                v.isEnabled = false
-            }
-//            tv1.isClickable.equals(false)
-            //sharedPrefUtil.clearSharedPref()
-//            finish()
         })
         builder.setNegativeButton(R.string.dialog_cancel, DialogInterface.OnClickListener { dialog, which ->
             dialog.dismiss();
@@ -240,4 +235,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onSaveInstanceState(outState)
         outState?.putStringArrayList(KeyAdd,myArrList)
     }
+
+    private fun initHideKeyboard(touchInterceptor: RelativeLayout) {
+        touchInterceptor.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                setHideKeyboard(EtRandom, v, event)
+
+            }
+            false
+        }
+    }
+
+    private fun setHideKeyboard(editText: EditText, v: View, event: MotionEvent) {
+        if (editText.isFocused) {
+            val outRect = Rect()
+            editText.getGlobalVisibleRect(outRect)
+            if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                editText.clearFocus()
+                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+            }
+        }
+    }
+
+
 }
