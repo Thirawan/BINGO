@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BINGO</string>
     <string name="text_hint">Enter number</string>
-    <string name="text_random">Random</string>
+    <string name="text_random">Submit</string>
     <string name="dialog_confirm">confirm</string>
     <string name="dialog_cancel">cancel</string>
     <string name="dialog_mission">ดูวิดิโอ 2 วิดิโอ</string>

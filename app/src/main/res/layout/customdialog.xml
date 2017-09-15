@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffff"
+    android:background="#3d3c3c"
+    android:gravity="center_horizontal"
     >
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:gravity="center"
+        android:layout_margin="50dp"
+        android:background="#2397f3"
+        android:gravity="center_horizontal"
         android:orientation="vertical" >
         <TextView
             android:id="@+id/textView1"
@@ -16,21 +19,23 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:textSize="20dp"
-            android:textColor="#232323"
-            android:text="TextView" />
+            android:textColor="#161616"
+            android:background="@drawable/number1"
+            />
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:textSize="20dp"
-            android:textColor="#232323"
-            android:text="TextView" />
+            android:textColor="#ffffff"
+            android:text="คุณได้รับรางวัล!!" />
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btnGift"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#2598f3"
+            android:background="#ffffff"
             android:text="Close" />
     </LinearLayout>
-
 </LinearLayout>

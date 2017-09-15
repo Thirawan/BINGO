@@ -18,6 +18,7 @@ import android.content.Context
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Intent
 import android.graphics.Rect
 import android.widget.RelativeLayout
 
@@ -27,7 +28,7 @@ import android.widget.RelativeLayout
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     var myArrList = ArrayList<String>()
     var myArrListAdd = ArrayList<String>()
-    val KeyAdd = "add"
+    private val KeyAdd = "Key"
     private val myMission = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +37,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         initHideKeyboard(RL1)
         showMissionArrList()
         if (savedInstanceState != null){
-            myArrList = savedInstanceState.get(KeyAdd) as ArrayList<String>
 
+            myArrListAdd = savedInstanceState.get(KeyAdd) as ArrayList<String>
+            for (i in  myArrListAdd.indices){
+                println(myArrListAdd[i] + "arr")
+                val j = i+1
+                val id = resources.getIdentifier("tv" + j , "id", packageName)
+                val textView = this.findViewById<TextView>(id)
+                textView.text = myArrListAdd[i]
+            }
+
+//            println("testif")
+        }else{
+            AddMyArrList()
+            AllSetTVText()
         }
-        AddMyArrList()
-        AllSetTVText()
+
+//        println("testja")
         tv1.setOnClickListener(this)
         tv2.setOnClickListener(this)
         tv3.setOnClickListener(this)
@@ -210,8 +223,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 //        builder.setMessage(R.string.dialog_mission)
         builder.setPositiveButton(R.string.dialog_confirm, DialogInterface.OnClickListener { dialog, id ->
-//            val intent = Intent(this, Main2Activity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, Main2Activity::class.java)
+            startActivity(intent)
             if (v != null) {
                 v.setBackgroundResource(R.drawable.ic_finish)
                 v.isEnabled = false
@@ -233,7 +246,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putStringArrayList(KeyAdd,myArrList)
+        outState?.putStringArrayList("Key",myArrListAdd)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        myArrListAdd = savedInstanceState.getStringArrayList("Key")
+
     }
 
     private fun initHideKeyboard(touchInterceptor: RelativeLayout) {
@@ -257,6 +276,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
-
 }
+
